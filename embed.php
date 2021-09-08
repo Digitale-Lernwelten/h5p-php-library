@@ -10,9 +10,15 @@
     <link rel="stylesheet" href="<?php print $styles[$i]; ?>">
   <?php endfor; ?>
   <?php if (!empty($additional_embed_head_tags)): print implode("\n", $additional_embed_head_tags); endif; ?>
+  <?php
+    $divClasses = ['h5p-content'];
+    if(isset($content['tags'])){
+		$divClasses = array_merge($divClasses,$content['tags']);
+	}
+	?>
 </head>
 <body>
-  <div class="h5p-content" data-content-id="<?php print $content['id']; ?>"></div>
+  <div class="<?php echo implode(' ', $divClasses); ?>" data-content-id="<?php print $content['id']; ?>"></div>
   <script>
     H5PIntegration = <?php print json_encode($integration); ?>;
   </script>
